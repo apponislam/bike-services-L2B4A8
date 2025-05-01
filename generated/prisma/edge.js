@@ -185,7 +185,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres:apponsql@localhost:5432/bike-services?schema=public"
+        "value": "postgresql://bikeservices_user:rvMshC6TM1vZBMv1bBcDbEZJ3SgMm8qz@dpg-d09tpkbipnbc73b458c0-a.oregon-postgres.render.com/bikeservices?schema=public"
       }
     }
   },
