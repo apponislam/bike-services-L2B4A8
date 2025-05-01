@@ -1,56 +1,41 @@
 import { Request, Response } from "express";
 import { bikeServices } from "./bikes.service";
+import sendResponse from "../../utils/sendResponse";
+import catchAsync from "../../utils/catchAsync";
 
-const createBike = async (req: Request, res: Response) => {
-    try {
-        const bike = await bikeServices.createBike(req.body);
-        res.status(201).json({
-            success: true,
-            message: "Bike added successfully",
-            data: bike,
-        });
-    } catch (error: any) {
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-        });
-    }
-};
+const createBike = catchAsync(async (req: Request, res: Response) => {
+    const bike = await bikeServices.createBike(req.body);
 
-const getAllBikes = async (req: Request, res: Response) => {
-    try {
-        const bikes = await bikeServices.getAllBikes();
-        res.status(200).json({
-            success: true,
-            message: "Bikes fetched successfully",
-            data: bikes,
-        });
-    } catch (error) {
-        console.error("Get all bikes error:", error);
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-        });
-    }
-};
+    sendResponse(res, {
+        statusCode: 201,
+        success: true,
+        message: "Bike added successfully",
+        data: bike,
+    });
+});
 
-const getBikeById = async (req: Request, res: Response) => {
-    try {
-        const { id } = req.params;
-        const bike = await bikeServices.getBikeById(id);
+const getAllBikes = catchAsync(async (req: Request, res: Response) => {
+    const bikes = await bikeServices.getAllBikes();
 
-        res.status(200).json({
-            success: true,
-            message: "Bike fetched successfully",
-            data: bike,
-        });
-    } catch (error: any) {
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-        });
-    }
-};
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: "Bikes fetched successfully",
+        data: bikes,
+    });
+});
+
+const getBikeById = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const bike = await bikeServices.getBikeById(id);
+
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: "Bikes fetched successfully",
+        data: bike,
+    });
+});
 
 export const bikeController = {
     createBike,
