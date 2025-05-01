@@ -15,6 +15,7 @@ const createCustomer = async (req: Request, res: Response) => {
                 success: false,
                 message: "Email already exists.",
             });
+            return;
         }
 
         console.error("Create customer error:", error);
