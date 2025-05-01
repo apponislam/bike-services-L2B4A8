@@ -13,7 +13,7 @@ const getAllCustomers = async () => {
 };
 
 const getCustomerById = async (customerId: string) => {
-    const result = await prisma.customer.findUnique({
+    const result = await prisma.customer.findUniqueOrThrow({
         where: {
             customerId,
         },

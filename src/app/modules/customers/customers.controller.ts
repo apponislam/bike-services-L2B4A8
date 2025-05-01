@@ -29,13 +29,6 @@ const getCustomerById = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
     const customer = await customerServices.getCustomerById(id);
 
-    if (!customer) {
-        res.status(404).json({
-            success: false,
-            message: "Customer not found",
-        });
-    }
-
     sendResponse(res, {
         statusCode: 200,
         success: true,
@@ -48,7 +41,6 @@ const updateCustomer = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
     const updateData = req.body;
 
-    // Prevent email updates if included (optional)
     if (updateData.email) {
         res.status(400).json({
             success: false,
