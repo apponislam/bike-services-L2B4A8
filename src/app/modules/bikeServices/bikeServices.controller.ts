@@ -31,14 +31,6 @@ const getAllServiceRecords = catchAsync(async (req: Request, res: Response) => {
 const getServiceRecordById = catchAsync(async (req: Request, res: Response) => {
     const record = await serviceServices.getServiceRecordById(req.params.id);
 
-    if (!record) {
-        res.status(404).json({
-            success: false,
-            message: "Service record not found",
-        });
-        return;
-    }
-
     sendResponse(res, {
         statusCode: 200,
         success: true,

@@ -43,7 +43,7 @@ const globalErrorHandler = (err: unknown, req: Request, res: Response, next: Nex
         success: false,
         status,
         message,
-        errors: err, //need to remove after work
+        // errors: err, //need to remove after work
         ...(process.env.NODE_ENV === "development" && { stack: (err as Error)?.stack }),
     };
 

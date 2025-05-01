@@ -27,7 +27,7 @@ const getAllServiceRecords = async () => {
 };
 
 const getServiceRecordById = async (serviceId: string) => {
-    const record = await prisma.serviceRecord.findUnique({
+    const record = await prisma.serviceRecord.findUniqueOrThrow({
         where: { serviceId },
     });
 
