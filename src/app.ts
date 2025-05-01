@@ -6,7 +6,11 @@ import notFoundHandler from "./app/middlewares/notFoundRoute";
 
 const app: Application = express();
 
-app.use(cors());
+app.use(
+    cors({
+        origin: ["http://localhost:3000", "https://bike-services-l2-b4-a8.vercel.app"],
+    })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

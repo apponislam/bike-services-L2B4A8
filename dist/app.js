@@ -9,7 +9,9 @@ const routes_1 = __importDefault(require("./app/routes"));
 const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalErrorHandler"));
 const notFoundRoute_1 = __importDefault(require("./app/middlewares/notFoundRoute"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: ["http://localhost:3000", "https://bike-services-l2-b4-a8.vercel.app"],
+}));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
